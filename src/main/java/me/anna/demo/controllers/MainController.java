@@ -41,22 +41,22 @@ public class MainController {
     }
 
     @PostMapping("/enteruser")
-    public String postUser(@ModelAttribute("newUser") User user, BindingResult bindingResult)
+    public String postUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors()){
             return "enteruser";
         }
-//
-//       if(user.getEndDate() != null)
-//       {
-//       //     LocalDate today = LocalDate.now();
-//          //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-//          //  String formattedString = today.format(formatter);
-//          //  System.out.println((today));
-//       //     String endDate1 = today.toString();
-//       //     user.setEndDate(endDate1);
-//       }
-//
+
+//       if(user.getEndDate() == null)
+ //      {
+ //           LocalDate today = LocalDate.now();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+//            String formattedString = today.format(formatter);
+//            System.out.println((today));
+ //           String endDate1 = today.toString();
+ //           user.setEndDate(endDate1);
+ //      }
+
         user.setEmployedDays(ChronoUnit.DAYS.between(user.getStartDate(), user.getEndDate()));
 
         roboResumeRepository.save(user);

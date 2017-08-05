@@ -6,10 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+
 
 @Entity
 public class User {
@@ -18,38 +19,45 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
     @NotNull
-    @Size(min=1, max=40)
+    @Size(min=1, max=50)
     private String name;
 
+
     @NotNull
-    @Size(min=1, max=40)
+    @Size(min=1, max=50)
     private String emailAddress;
 
-    @NotNull
-    @Size(min=1, max=40)
-    private String organisation;
 
-    //private int year;
-    // private int month;
-    //private int day;
+    @NotNull
+    @Size
+    private String organisation;
 
     @NotNull
     private LocalDate startDate;
 
-    @NotNull
+
     private LocalDate endDate;
+
+
+
+
+    // private Date endDate = LocalDate.now();
     //private LocalDate endDate = null;
 
 
 
     private long employedDays;
-    public long getEmployedDays() {
+
+    public long getEmployedDays()
+    {
         return employedDays;
     }
     public void setEmployedDays(long employedDays) {
         this.employedDays = employedDays;
     }
+
 
     public String getName() {
         return name;
@@ -84,9 +92,7 @@ public class User {
     public void setStartDate(String startDate) { this.startDate = LocalDate.parse(startDate); }
 
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+    public LocalDate getEndDate()  {  return endDate;    }
 
     public void setEndDate(String endDate) {
         this.endDate = LocalDate.parse(endDate);
@@ -94,6 +100,7 @@ public class User {
 
 
     //public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+
 
 
 }
